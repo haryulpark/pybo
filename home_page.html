@@ -1,0 +1,143 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b79109624a2595c7c03c44fc79cf8e52"></script>
+
+    <title>사랑의 배터리 ; i love electric car </title>
+</head>
+<body>
+<div class="header">
+    <h1>사랑의 배터리 ; i love electric car</h1>
+</div>
+
+<div class="board">
+    <ul class="btn">
+        <li class="first"><a href="#tab01" class="active">전기차 충전소</a></li>
+        <li><a href="{% url 'pybo:tab2' %}">지역별 년도별 전기차 추이</a></li>
+    </ul>
+    <div class="bwrap">
+        <div class="notice">
+            <table class="table">
+                <input type="text" id="input" size="60" placeholder="찾아보고싶은 지역을 입력하세요">
+            </table>
+            <div>
+                <div class="searchstation">
+                    <button class="search" onclick="input()">검색</button>
+                </div>
+
+            </div>
+
+           </div> <textarea id="output"></textarea>
+
+        <!-- <div class="gallery">
+             <h2>알아보고싶은 년도를 입력해보세요(※2017~2022내의 숫자만 입력해주세요.)</h2>
+         </div>-->
+    </div>
+
+</div>
+<div class="ka" id="map" style="width: 800px; height: 600px; margin: 0 auto;"></div>
+<script
+        type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b79109624a2595c7c03c44fc79cf8e52"></script>
+
+
+<div class="tablebox">
+    <h3> 노출될 임의 영역입니다.</h3>
+</div>
+<!-- <div id="root"></div> -->
+
+{% block script %}
+<script type='text/javascript'>
+var temp;
+
+function input(){
+var input = document.getElementById("input").value;
+temp = input;
+output();
+}
+
+function output(){
+document.getElementById("output").value = temp;
+}
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    mapOption = {
+        center: new kakao.maps.LatLng(37.556421585556336, 127.10492928845024), // 지도의 중심좌표
+        level: 13 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 마커를 표시할 위치와 title 객체 배열입니다
+var positions = [
+    {
+        title : '임시',
+        latlng: new kakao.maps.LatLng(37.57397427178013, 127.1763084845669)
+    },
+    {
+        title: '생태연못',
+        latlng: new kakao.maps.LatLng(33.450936, 126.569477)
+    },
+    {
+        title: '텃밭',
+        latlng: new kakao.maps.LatLng(33.450879, 126.569940)
+    },
+    {
+        title: '근린공원',
+        latlng: new kakao.maps.LatLng(37.57408856274329, 127.17613152481712)
+    },
+    {
+        title: '카카오',
+        latlng: new kakao.maps.LatLng(33.450705, 126.570677)
+    },
+    {
+        title: '전기자동차 충전소',
+        latlng: new kakao.maps.LatLng(37.57723513694318, 127.17532755327359)
+    },
+    {
+        title: '전기자동차 충전소',
+        latlng: new kakao.maps.LatLng(37.552592350538426, 127.18159477250546)
+    }
+];
+
+// 마커 이미지의 이미지 주소입니다
+var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+for (var i = 0; i < positions.length; i ++) {
+
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(24, 35);
+
+    // 마커 이미지를 생성합니다
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커를 표시할 위치
+        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지
+    });
+}
+</script>
+<style>
+    textarea{
+    position : relative;
+    z-index : 8000000;
+    top : 10px;
+    margin : 0;
+    padding 0;
+    }
+</style>
+{% endblock %}
+
+</body>
+</html>

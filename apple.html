@@ -1,0 +1,390 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b79109624a2595c7c03c44fc79cf8e52"></script>
+
+    <title>i love electric car; 사랑의 배터리</title>
+</head>
+<body>
+<div class="header">
+    <h1>사랑의 배터리 ; i love electric car</h1>
+</div>
+
+<div class="board">
+    <ul class="btn">
+        <li class="first"><a href="{% url 'pybo:tab2' %}" class="active">지역별 년도별 전기차 추이</a></li>
+        <li><a href="{% url 'pybo:home' %}">전기차 충전소</a></li>
+    </ul>
+
+
+    <div class="body">
+        <ul>
+            <li>
+                <button class="custom-btn btn-6" onclick="ChImg13()">경기도</button>
+                 <button class="custom-btn btn-6" onclick="ChImg14()">경상남도</button>
+                <button class="custom-btn btn-6" onclick="ChImg12()">경상북도</button>
+                <button class="custom-btn btn-6" onclick="ChImg11()">강원도</button>
+
+            </li>
+
+            <li>
+                <button class="custom-btn btn-6" onclick="ChImg1()"><span>부산광역시</span></button>
+                <button class="custom-btn btn-6" onclick="ChImg5()"><span>대전광역시</span></button>
+                <button class="custom-btn btn-6" onclick="ChImg7()"><span>인천광역시</span></button>
+                <button class="custom-btn btn-6" onclick="ChImg4()"><span>대구광역시</span></button>
+            </li>
+
+            <li>
+                <button class="custom-btn btn-6" onclick="ChImg9()">전라북도</button>
+                 <button class="custom-btn btn-6" onclick="ChImg10()">전라남도</button>
+                <button class="custom-btn btn-6" onclick="ChImg8()"><span>제주특별자치도</span></button>
+                <button class="custom-btn btn-6" onclick="ChImg6()"><span>광주광역시</span></button>
+            </li>
+
+            <li>
+
+                <button class="custom-btn btn-6" onclick="ChImg2()"><span>충청북도</span></button>
+                <button class="custom-btn btn-6" onclick="ChImg3()"><span>충청남도</span></button>
+                <button class="custom-btn btn-6" onclick="ChImg15()">세종특별자치시</button>
+                <button class="custom-btn btn-6" onclick="ChImg16()">서울특별시</button>
+            </li>
+            <li>
+                <button class="custom-btn btn-6" onclick="ChImg17()">울산광역시</button>
+            </li>
+
+
+        </ul>
+
+    </div>
+
+    <div>
+        <img id="imgId" class="picture" src="{%static 'images/yrs.png' %}">
+    </div>
+
+</div>
+<div class="mapzip">
+    <ul>
+        <li>
+            <button class="custom-btn btn-1"><a href="{% url 'pybo:show_map22' %}"><span>2022년도 추이</span></a></button>
+
+        </li>
+        <li>
+            <button class="custom-btn btn-1"><a href="{% url 'pybo:show_map21' %}"><span>2021년도 추이</span></a></button>
+
+        </li>
+        <li>
+            <button class="custom-btn btn-1"><a href="{% url 'pybo:show_map20' %}"><span>2020년도 추이</span></a></button>
+
+        </li>
+        <li>
+            <button class="custom-btn btn-1"><a href="{% url 'pybo:show_map19' %}"><span>2019년도 추이</span></a></button>
+        </li>
+        <li>
+            <button class="custom-btn btn-1"><a href="{% url 'pybo:show_map18' %}"><span>2018년도 추이</span></a></button>
+        </li>
+        <li>
+            <button class="custom-btn btn-1"><a href="{% url 'pybo:show_map17' %}"><span>2017년도 추이</span></a></button>
+        </li>
+    </ul>
+
+
+</div>
+
+
+<!-- <div id="root"></div> -->
+<style>
+.picture {
+  left : 60px;
+  top : 160px;
+ width : 1000px;
+ height : 600px;
+}
+a {
+  text-decoration: none;
+  line-height: $btn-height;
+  color: black;
+}
+
+.body {
+    border : 1px solid #f0f8ff;
+    position : absolute;
+    left: 1200px;
+    top : 550px;
+    padding : 10px;
+    height: 255px;
+    float : left;
+    background-color : #f0f8ff;
+}
+.body button {
+ margin : 5px;
+}
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+.btn-1 {
+  background-color: #4dccc6;
+background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
+  line-height: 42px;
+  padding: 0;
+  border: none;
+}
+.btn-1:hover{
+  background-color: #89d8d3;
+background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+}
+.btn-1 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.btn-1:before,
+.btn-1:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+   box-shadow:  4px 4px 6px 0 rgba(255,255,255,.9),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255,255,255,.9),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  transition: all 0.3s ease;
+}
+.btn-1:before {
+  height: 0%;
+  width: .1px;
+}
+.btn-1:after {
+  width: 0%;
+  height: .1px;
+}
+.btn-1:hover:before {
+  height: 100%;
+}
+.btn-1:hover:after {
+  width: 100%;
+}
+.btn-1 span:before,
+.btn-1 span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.9),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255,255,255,.9),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  transition: all 0.3s ease;
+}
+.btn-1 span:before {
+  width: .1px;
+  height: 0%;
+}
+.btn-1 span:after {
+  width: 0%;
+  height: .1px;
+}
+.btn-1 span:hover:before {
+  height: 100%;
+}
+.btn-1 span:hover:after {
+  width: 100%;
+}
+.mapzip{
+border : 1px solid #fff0f5;
+position : absolute;
+left: 1200px;
+top : 160px;
+padding : 10px;
+height: 360px;
+float : left;
+margin : 0 auto;
+background-color : #fff0f5;
+}
+
+.mapzip button{
+    margin : 10px;
+}
+
+
+.btn-6 {
+  background: rgb(247,150,192);
+background: radial-gradient(circle, rgba(247,150,192,1) 0%, rgba(118,174,241,1) 100%);
+  line-height: 42px;
+  padding: 0;
+  border: none;
+}
+.btn-6 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.btn-6:before,
+.btn-6:after {
+  position: absolute;
+  content: "";
+  height: 0%;
+  width: 1px;
+ box-shadow:
+   -1px -1px 20px 0px rgba(255,255,255,1),
+   -4px -4px 5px 0px rgba(255,255,255,1),
+   7px 7px 20px 0px rgba(0,0,0,.4),
+   4px 4px 5px 0px rgba(0,0,0,.3);
+}
+.btn-6:before {
+  right: 0;
+  top: 0;
+  transition: all 500ms ease;
+}
+.btn-6:after {
+  left: 0;
+  bottom: 0;
+  transition: all 500ms ease;
+}
+.btn-6:hover{
+  background: transparent;
+  color: #76aef1;
+  box-shadow: none;
+}
+.btn-6:hover:before {
+  transition: all 500ms ease;
+  height: 100%;
+}
+.btn-6:hover:after {
+  transition: all 500ms ease;
+  height: 100%;
+}
+.btn-6 span:before,
+.btn-6 span:after {
+  position: absolute;
+  content: "";
+  box-shadow:
+   -1px -1px 20px 0px rgba(255,255,255,1),
+   -4px -4px 5px 0px rgba(255,255,255,1),
+   7px 7px 20px 0px rgba(0,0,0,.4),
+   4px 4px 5px 0px rgba(0,0,0,.3);
+}
+.btn-6 span:before {
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: .5px;
+  transition: all 500ms ease;
+}
+.btn-6 span:after {
+  right: 0;
+  bottom: 0;
+  width: 0%;
+  height: .5px;
+  transition: all 500ms ease;
+}
+.btn-6 span:hover:before {
+  width: 100%;
+}
+.btn-6 span:hover:after {
+  width: 100%;
+}
+
+
+
+</style>
+<script type="text/javascript">
+   var temp;
+
+function input(){
+var input = document.getElementById("input").value;
+temp = input;
+output();
+}
+
+function output(){
+document.getElementById("output").value = temp;
+}
+
+function ChImg1(){
+    document.getElementById("imgId").src = "{%static 'images/busan.png' %}";
+}
+
+function ChImg2(){
+    document.getElementById("imgId").src = "{%static 'images/chungbuk.png' %}";
+}
+function ChImg3(){
+    document.getElementById("imgId").src = "{%static 'images/chungnam.png' %}";
+}
+function ChImg4(){
+    document.getElementById("imgId").src = "{%static 'images/daegu.png' %}";
+}
+function ChImg5(){
+    document.getElementById("imgId").src = "{%static 'images/daejeon.png' %}";
+}
+function ChImg6(){
+    document.getElementById("imgId").src = "{%static 'images/gwangju.png' %}";
+}
+function ChImg7(){
+    document.getElementById("imgId").src = "{%static 'images/incheon.png' %}";
+}
+function ChImg8(){
+    document.getElementById("imgId").src = "{%static 'images/jeju.png' %}";
+}
+function ChImg9(){
+    document.getElementById("imgId").src = "{%static 'images/jeonbuk.png' %}";
+}
+function ChImg10(){
+    document.getElementById("imgId").src = "{%static 'images/jeonnam.png' %}";
+}
+function ChImg11(){
+    document.getElementById("imgId").src = "{%static 'images/kangwon.png' %}";
+}
+function ChImg12(){
+    document.getElementById("imgId").src = "{%static 'images/kyungbuk.png' %}";
+}
+function ChImg13(){
+    document.getElementById("imgId").src = "{%static 'images/kyungki.png' %}";
+}
+function ChImg14(){
+    document.getElementById("imgId").src = "{%static 'images/kyungnam.png' %}";
+}
+function ChImg15(){
+    document.getElementById("imgId").src = "{%static 'images/sejong.png' %}";
+}
+function ChImg16(){
+    document.getElementById("imgId").src = "{%static 'images/seoul.png' %}";
+}
+function ChImg17(){
+    document.getElementById("imgId").src = "{%static 'images/ulsan.png' %}";
+}
+
+
+
+</script>
+{% block script %}
+
+{% endblock %}
+<script src="{% static 'jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b79109624a2595c7c03c44fc79cf8e52"></script>
+
+    <title>i love electric car; 사랑의 배터리</title>
+</head>
+<body>
+<div class="header">
+    <h1>사랑의 배터리 ; i love electric</h1>
+</div>
+
+<div class="board">
+    <ul class="btn">
+        <li class="first"><a href="tab2.html" class="active">전기차 충전소</a></li>
+        <li><a href="home_page.html">지역별 년도별 전기차 추이</a></li>
+    </ul>
+
+
+    <div class="bwrap">
+        <div class="notice">
+            <table class="table">
+                <input type="text" id="Keyword" size="60">
+            </table>
+            <div>
+                <div class="searchstation">
+                    <button class="search">검색</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- <div class="gallery">
+             <h2>알아보고싶은 년도를 입력해보세요(※2017~2022내의 숫자만 입력해주세요.)</h2>
+         </div>-->
+    </div>
+
+</div>
+<div class="ka" id="map" style="width: 800px; height: 600px; margin: 0 auto;"></div>
+<script
+        type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b79109624a2595c7c03c44fc79cf8e52"></script>
+<script>
+        var container = document.getElementById('map');
+        var options = {
+          center: new kakao.maps.LatLng(33.450701, 126.570667),
+          level: 3
+        };
+
+        var map = new kakao.maps.Map(container, options);
+
+</script>
+
+<div class="tablebox">
+    <h3> 노출될 임의 영역입니다.</h3>
+      <a href="{% url 'pybo:show_map17' %}" class="btn btn-primary">지도17</a>
+    <a href="{% url 'pybo:show_map18' %}" class="btn btn-primary">지도18</a><br><br>
+    <a href="{% url 'pybo:show_map19' %}" class="btn btn-primary">지도19</a>
+    <a href="{% url 'pybo:show_map20' %}" class="btn btn-primary">지도20</a><br><br>
+    <a href="{% url 'pybo:show_map21' %}" class="btn btn-primary">지도21</a>
+    <a href="{% url 'pybo:show_map22' %}" class="btn btn-primary">지도22</a>
+
+</div>
+<!-- <div id="root"></div> -->
+
+{% block script %}
+<script type='text/javascript'>
+$(document).ready(function(){
+     $('.btn a').click(function(){
+            $('.btn a').removeClass('active');
+            $(this).addClass('active');
+            var i = $(this).parent().index();
+            $('.bwrap > div').fadeOut(0);
+            $('.bwrap > div').eq(i).fadeIn(0);
+    });
+});
+</script>
+{% endblock %}
+<script src="{% static 'jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'bootstrap.min.js' %}"></script>
+</body>
+</html>
