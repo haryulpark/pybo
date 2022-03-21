@@ -1,0 +1,159 @@
+*{padding: 0; margin: 0 auto;/*여백 없앰*/
+  font-family: "맑은 고딕", sans-serif;}
+li{list-style: none;}
+a{text-decoration: none;} /*리스트 기호 없앰*/
+img{border: none;} /*이미지 링크시 생기는 선 없앰*/
+
+.header{
+    width : 100%;
+    height 600px;
+    background-color :  #fff0f5;
+}
+.header h1{
+    text-align : center;
+}
+
+.board{
+  width: 600px; height: 200px;
+  padding: 0 20px;
+  float: left;
+  /*  background-color: aqua;*/
+  box-sizing: border-box;
+  margin: 20px;
+}
+
+input {
+ float: left; margin-top: 5px; height: 25px;
+}
+
+.btn{
+  width: auto; height: 50px;
+  border-bottom:  1px solid #999999;
+}
+
+.btn .first{
+  margin-left: 0;
+}
+.btn li{ /*메뉴 활성화*/
+  float: left;
+  margin: 0 10px;
+  height: 100%; line-height: 49px;
+}
+
+.btn .first{
+  margin-left: 0;
+}
+.btn a{
+  display: block;
+  width: 100%; height: 100%;
+  box-sizing: border-box;
+  font-size: 18px; font-weight: bold; color: #999999;
+}
+.btn a.active{ /*글자 활성화*/
+  color: #222328; border-bottom: 3px solid #222328;
+}
+
+/*.notice{
+  width: 100%; height: 150px; float: left; margin: auto;
+}*/
+
+bwrap{
+    top : 0;
+}
+
+.gallery{
+  width: 100%; height: 150px;
+  display: none;
+}
+
+.notice li{
+  width: 100%; height: 30px;
+  line-height: 30px;
+}
+
+.notice .date{
+  float: right;
+  display: block;
+  padding-right: 13px; box-sizing: border-box;
+  font-size: 16px; color: darkturquoise;
+}
+.gallery ul{
+  padding: 25px 0;
+}
+.gallery li{
+  float: left;
+  width: 100px; height: 100px;
+  margin: 0 10px;
+}
+.ka{
+ position : absolute;
+ top : 155px;
+ left : 40px;
+
+}
+.table{
+  float: left;
+}
+.search{
+  font-size: large; float: left; margin-top: 3px;
+  width: 70px; margin: 5px;
+}
+.tablebox{
+    border : 2px solid; padding: 10px;
+    position : absolute;
+    width : 700px;
+    height : 580px;
+    top : 155px;
+    left : 850px;
+    background-color : #888888;
+    z-index : 9000;
+}
+.picture{
+position : absolute;
+left : 0px;
+padding : 5px;
+width: 1300px;
+height: 600px;
+}
+.mapzip{
+border : 1px solid #fff0f5;
+position : absolute;
+left: 1200px;
+top : 155px;
+padding : 10px;
+height: 500px;
+float : left;
+margin : 0 auto;
+background-color : #fff0f5;
+
+}
+
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+/* 1 */
+.btn-1 {
+  background: rgb(6,14,131);
+  background: linear-gradient(0deg, rgba(6,14,131,1) 0%, rgba(12,25,180,1) 100%);
+  border: none;
+}
+.btn-1:hover {
+   background: rgb(0,3,255);
+background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+}

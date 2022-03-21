@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b79109624a2595c7c03c44fc79cf8e52"></script>
+
+    <title>i love electric car; 사랑의 배터리</title>
+</head>
+
+<body>
+<div class="header">
+    <h1>사랑의 배터리 ; i love electric car</h1>
+</div>
+
+<div class="17title" style="padding-top: 20px; padding-bottom: 15px; padding-left: 250px">
+<h2>2022년 친환경 자동차 등록 현황</h2>
+</div>
+
+<div class="map!" id="map22" style="width: 1400px; height: 1400px; margin: 0 auto;">
+    {{map22|safe}}
+</div>
+
+</body>
+{% block content %}
+{% endblock %}
+</html>

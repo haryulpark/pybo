@@ -10,9 +10,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b79109624a2595c7c03c44fc79cf8e52"></script>
+    <script src="./data.js"></script>
 
     <title>i love electric car; 사랑의 배터리</title>
 </head>
+<script>
+$(function () {	//화면 로딩후 시작
+		$("#input").autocomplete({  //오토 컴플릿트 시작
+			source: List,	// source는 data.js파일 내부의 List 배열
+			focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌
+				return false;
+			},
+			minLength: 1,// 최소 글자수
+			delay: 100,	//autocomplete 딜레이 시간(ms)
+			//disabled: true, //자동완성 기능 끄기
+		});
+	});
+
+
+</script>
 <body>
 <div class="header">
     <h1>사랑의 배터리 ; i love electric car</h1>
@@ -23,8 +39,19 @@
         <li class="first"><a href="{% url 'pybo:tab2' %}" class="active">지역별 년도별 전기차 추이</a></li>
         <li><a href="{% url 'pybo:home' %}">전기차 충전소</a></li>
     </ul>
-
-
+    <div class="bwrap">
+        <div class="notice">
+            <table class="table">
+                <input type="text" id="input" size="60"  placeholder="찾아보고싶은 지역을 입력하세요">
+            </table>
+            <div>
+                <div class="searchstation">
+                    <button class="search" onclick="input()">검색</button>
+                </div>
+            </div>
+           </div>
+<!--        <textarea id="output"></textarea>-->
+        <img src= /static/images/yrs.png alt="잘못 입력하셨습니다." id="output" class="picture">
     <div class="body">
         <ul>
             <li>
@@ -32,41 +59,27 @@
                  <button class="custom-btn btn-6" onclick="ChImg14()">경상남도</button>
                 <button class="custom-btn btn-6" onclick="ChImg12()">경상북도</button>
                 <button class="custom-btn btn-6" onclick="ChImg11()">강원도</button>
-
-            </li>
-
-            <li>
                 <button class="custom-btn btn-6" onclick="ChImg1()"><span>부산광역시</span></button>
                 <button class="custom-btn btn-6" onclick="ChImg5()"><span>대전광역시</span></button>
                 <button class="custom-btn btn-6" onclick="ChImg7()"><span>인천광역시</span></button>
                 <button class="custom-btn btn-6" onclick="ChImg4()"><span>대구광역시</span></button>
-            </li>
-
-            <li>
                 <button class="custom-btn btn-6" onclick="ChImg9()">전라북도</button>
                  <button class="custom-btn btn-6" onclick="ChImg10()">전라남도</button>
                 <button class="custom-btn btn-6" onclick="ChImg8()"><span>제주특별자치도</span></button>
                 <button class="custom-btn btn-6" onclick="ChImg6()"><span>광주광역시</span></button>
-            </li>
-
-            <li>
-
                 <button class="custom-btn btn-6" onclick="ChImg2()"><span>충청북도</span></button>
                 <button class="custom-btn btn-6" onclick="ChImg3()"><span>충청남도</span></button>
                 <button class="custom-btn btn-6" onclick="ChImg15()">세종특별자치시</button>
                 <button class="custom-btn btn-6" onclick="ChImg16()">서울특별시</button>
-            </li>
-            <li>
                 <button class="custom-btn btn-6" onclick="ChImg17()">울산광역시</button>
+                <button class="custom-btn btn-6" onclick="ChImg18()">자동차 등록 추이</button>
             </li>
-
-
         </ul>
 
     </div>
 
     <div>
-        <img id="imgId" class="picture" src="{%static 'images/yrs.png' %}">
+        <img id="imgId" class="picture2" src="{%static 'images/yrs1.png' %}">
     </div>
 
 </div>
@@ -74,39 +87,53 @@
     <ul>
         <li>
             <button class="custom-btn btn-1"><a href="{% url 'pybo:show_map22' %}"><span>2022년도 추이</span></a></button>
-
-        </li>
-        <li>
             <button class="custom-btn btn-1"><a href="{% url 'pybo:show_map21' %}"><span>2021년도 추이</span></a></button>
-
-        </li>
-        <li>
             <button class="custom-btn btn-1"><a href="{% url 'pybo:show_map20' %}"><span>2020년도 추이</span></a></button>
-
-        </li>
-        <li>
             <button class="custom-btn btn-1"><a href="{% url 'pybo:show_map19' %}"><span>2019년도 추이</span></a></button>
-        </li>
-        <li>
             <button class="custom-btn btn-1"><a href="{% url 'pybo:show_map18' %}"><span>2018년도 추이</span></a></button>
-        </li>
-        <li>
             <button class="custom-btn btn-1"><a href="{% url 'pybo:show_map17' %}"><span>2017년도 추이</span></a></button>
         </li>
     </ul>
 
 
 </div>
-
+<div class="line"></div>
 
 <!-- <div id="root"></div> -->
 <style>
+
+
+.line {
+border-left : 2px solid #999999;
+height : 900px;
+width : 1px;
+margin-left : 1010px;
+right : 1px;
+top : 89px;
+z-index : 9000;
+}
+ textarea{
+    position : relative;
+    z-index : 8000000;
+    top : 10px;
+    margin : 0;
+    padding 0;
+    }
+
 .picture {
-  left : 60px;
+  left : 30px;
   top : 160px;
  width : 1000px;
  height : 600px;
 }
+.picture2 {
+  position : absolute;
+  left : 1100px;
+  top : 160px;
+ width : 1000px;
+ height : 600px;
+}
+
 a {
   text-decoration: none;
   line-height: $btn-height;
@@ -117,7 +144,7 @@ a {
     border : 1px solid #f0f8ff;
     position : absolute;
     left: 1200px;
-    top : 550px;
+    top : 800px;
     padding : 10px;
     height: 255px;
     float : left;
@@ -216,17 +243,18 @@ background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
 .mapzip{
 border : 1px solid #fff0f5;
 position : absolute;
-left: 1200px;
-top : 160px;
-padding : 10px;
-height: 360px;
+left: 660px;
+top : 90px;
+padding : 5px;
+height: 53px;
 float : left;
 margin : 0 auto;
 background-color : #fff0f5;
+z-index : 9000;
 }
 
 .mapzip button{
-    margin : 10px;
+    margin : 5px;
 }
 
 
@@ -309,7 +337,11 @@ background: radial-gradient(circle, rgba(247,150,192,1) 0%, rgba(118,174,241,1) 
   width: 100%;
 }
 
-
+.autocomplete { position: relative; display: inline-block; }
+.autocomplete-items { position: absolute; border: 1px solid #d4d4d4; border-bottom: none; border-top: none; z-index: 99; top: 100%; left: 0; right: 0; }
+.autocomplete-items div { padding: 10px; cursor: pointer; background-color: #fff; border-bottom: 1px solid #d4d4d4; }
+.autocomplete-items div:hover { background-color: #e9e9e9; }
+.autocomplete-active { background-color: DodgerBlue !important; color: #ffffff; }
 
 </style>
 <script type="text/javascript">
@@ -323,59 +355,71 @@ output();
 
 function output(){
 document.getElementById("output").value = temp;
+app();
 }
+<!--var like1 = prompt("보고싶은 지역은?","예시 : busan");-->
+<!--document.write("<img src = /static/images/"+like1+".png>");-->
+
+function app(){
+document.getElementById("output").src = "/static/images/"+temp+".png";
+}
+
 
 function ChImg1(){
-    document.getElementById("imgId").src = "{%static 'images/busan.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/부산.png' %}";
 }
 
+
 function ChImg2(){
-    document.getElementById("imgId").src = "{%static 'images/chungbuk.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/충청북도.png' %}";
 }
 function ChImg3(){
-    document.getElementById("imgId").src = "{%static 'images/chungnam.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/충청남도.png' %}";
 }
 function ChImg4(){
-    document.getElementById("imgId").src = "{%static 'images/daegu.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/대구광역시.png' %}";
 }
 function ChImg5(){
-    document.getElementById("imgId").src = "{%static 'images/daejeon.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/대전광역시.png' %}";
 }
 function ChImg6(){
-    document.getElementById("imgId").src = "{%static 'images/gwangju.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/광주광역시.png' %}";
 }
 function ChImg7(){
-    document.getElementById("imgId").src = "{%static 'images/incheon.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/인천광역시.png' %}";
 }
 function ChImg8(){
-    document.getElementById("imgId").src = "{%static 'images/jeju.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/제주특별자치시.png' %}";
 }
 function ChImg9(){
-    document.getElementById("imgId").src = "{%static 'images/jeonbuk.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/전라북도.png' %}";
 }
 function ChImg10(){
-    document.getElementById("imgId").src = "{%static 'images/jeonnam.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/전라남도.png' %}";
 }
 function ChImg11(){
-    document.getElementById("imgId").src = "{%static 'images/kangwon.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/강원도.png' %}";
 }
 function ChImg12(){
-    document.getElementById("imgId").src = "{%static 'images/kyungbuk.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/충청북도.png' %}";
 }
 function ChImg13(){
-    document.getElementById("imgId").src = "{%static 'images/kyungki.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/경기도.png' %}";
 }
 function ChImg14(){
-    document.getElementById("imgId").src = "{%static 'images/kyungnam.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/충청남도.png' %}";
 }
 function ChImg15(){
-    document.getElementById("imgId").src = "{%static 'images/sejong.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/세종특별자치시.png' %}";
 }
 function ChImg16(){
-    document.getElementById("imgId").src = "{%static 'images/seoul.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/서울특별시.png' %}";
 }
 function ChImg17(){
-    document.getElementById("imgId").src = "{%static 'images/ulsan.png' %}";
+    document.getElementById("imgId").src = "{%static 'images/울산광역시.png' %}";
+}
+function ChImg18(){
+    document.getElementById("imgId").src = "{%static 'images/yrs.png' %}";
 }
 
 
